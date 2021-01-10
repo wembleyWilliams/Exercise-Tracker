@@ -3,13 +3,14 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const exerciseSchema = new Schema({
-    username : {type: String, required: true },
-    description : {tpye: String, require: true },
-    duration : { type: number, required: true },
-    date: { type: date, required: true },
+    username : {type: String, required: true},
+    description : {tpye: String},
+    duration : { type: Number, required: true},
+    date: { type: Date, required: true},
+}, {
     timestamps: true,
-})
+});
 
-const Exercise = mongoose.model('Exercise', userSchema)
+const Exercise = mongoose.model('Exercise', exerciseSchema)
 
 module.exports = Exercise;
