@@ -13,11 +13,17 @@ app.use(cors());
 app.use(express.json());
 
 const uri = process.env.ATLAS_URI;
-mongoose.connect(uri, {useNewUriParser: true, useCreateIndex:true});
+mongoose.connect(uri, {useNewUrlParser: true, useCreateIndex:true, useUnifiedTopology: true});
 const connection = mongoose.connection;
 connection.once('open', () => {
     console.log("MongoDB database connection successfully established")
 })
+
+const exercisesRouter = require('./routes/exercises');
+const usersRouter = require('./routes/users');
+
+app.use('/exercises', exercisesRouter)
+app.use('/users', usersRouter)
 
 //This starts the server listening on a certain port
 app.listen(port, () => {
